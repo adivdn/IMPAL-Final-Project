@@ -69,7 +69,7 @@
         </div>
         <hr class="garis">
         <div class="login-google-fb">
-            <button class="form-control">Register using Google</button>
+            <a href="{{route('registergoogle')}}"><button class="form-control">Register using Google</button></a>
             <button class="form-control" style="margin-top: 10px;">Register using Facebook</button>
         </div>
     </div>

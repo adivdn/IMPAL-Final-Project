@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/register',[App\Http\Controllers\RegisterController::class,'index']);
 Route::post('/store',[App\Http\Controllers\RegisterController::class,'store'])->name('registeraccount');
+
+
+Route::get('auth/google',[App\Http\Controllers\GoogleController::class,'redirectToGoogle'])->name('registergoogle');
+Route::get('auth/google/callback',[App\Http\Controllers\GoogleController::class,'handleGoogleCallback'])->name('googlecallback');

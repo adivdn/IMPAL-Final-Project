@@ -41,10 +41,11 @@ class RegisterController extends Controller
             'password'  =>   'required|min:8'
         ]);
 
-        user::insert([
+        user::create([
             'email'         =>  $request->email,
             'password'      =>  Hash::make($request->password),
-            'countDiskon'   => 0
+            'countDiskon'   => 0,
+            'google_id'     => NULL
         ]);
 
         return redirect('/register')->with('success-message','Berhasil buat akun');

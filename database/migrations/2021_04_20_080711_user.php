@@ -18,6 +18,7 @@ class User extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('countDiskon');
+            $table->string('google_id');
             $table->timestamps();
         });
     }
