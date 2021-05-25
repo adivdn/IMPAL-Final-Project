@@ -1,0 +1,57 @@
+.widht-btn1 {
+  width: 120px !important;
+}
+
+.widht-btn2 {
+  width: 85px !important;
+}
+
+.bg-navy {
+  background-color: #3D4F91 !important;
+  color: white !important;
+}
+
+.bg-outline-navy {
+  background-color: none !important;
+  color: #3D4F91 !important;
+  border-color: #3D4F91 !important;
+  border-radius: 0px !important;
+}
+
+.bg-outline-white {
+  background-color: none !important;
+  color: white !important;
+  border-color: white !important;
+  border-radius: 0px !important;
+  border-width: 2px !important;
+}
+
+.text-navy {
+  color: #3D4F91 !important;
+}
+
+.bg-amber {
+  background-color: #EE7070 !important;
+  color: white !important;
+}
+
+.cardborder-none {
+  border: none !important;
+}
+
+.text-underlineambers h2, .text-underlineambers h3, .text-underlineambers h4, .text-underlineambers h5, .text-underlineambers h6 {
+  text-decoration: underline !important;
+  text-decoration-color: #EE7070 !important;
+  text-decoration-thickness: 7px !important;
+  text-underline-position: under !important;
+  /*border-bottom: 10px solid #EE7070 !important;*/
+}
+
+.txt-30 {
+  font-size: 30px !important;
+  color: #FEEFF1 !important;
+}
+
+.rounded-circle  {
+  border: 2px solid #EE7070 !important; 
+}

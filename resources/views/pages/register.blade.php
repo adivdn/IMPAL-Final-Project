@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +32,7 @@
     @if(session('success-message'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
-            <strong>Berhasil buat akun</strong>
+            <strong>Berhasil buat akun, Silahkan login</strong>
         </div>
     @endif
 
@@ -65,7 +64,7 @@
             </form>
         </div>
         <div class="link-login">
-            <p>Already Registered? <a href="#">Login</a> </p>
+            <p>Already Registered? <a href="{{url('/')}}">Login</a> </p>
         </div>
         <hr class="garis">
         <div class="login-google-fb">
