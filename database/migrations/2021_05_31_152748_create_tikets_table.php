@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class User extends Migration
+class CreateTiketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class User extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tikets', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('countDiskon')->nullable();
-            $table->string('google_id')->nullable();
-            $table->timestamps();
+            $table->foreignId('keretas_id')->constrained('keretas');
+            $table->date('jadwal');
+            $table->string('kelas');
+            $table->integer('harga_tiket');
         });
     }
 
@@ -30,6 +29,6 @@ class User extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tikets');
     }
 }

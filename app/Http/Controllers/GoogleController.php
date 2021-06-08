@@ -28,12 +28,12 @@ class GoogleController extends Controller
             // Jika true maka akan otomatis login
             if($findUser){
                 Auth::login($findUser);
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/dashboard');
             }else{
             // jika tidak maka akan membuat user baru dan redirect ke page register
-                user::create([
+                user::insert([
                     'email'         =>  $user->getEmail(),
-                    'password'      =>  Hash::make('contoh123'),
+                    'password'      => Hash::make('contoh123'),
                     'countDiskon'   =>  0,
                     'google_id'     => $user->getId()
                 ]);

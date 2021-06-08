@@ -1,0 +1,20 @@
+.btn-add {
+	color: white !important;
+	width: 200px !important;
+	text-align: center !important;
+	border: 2px solid #14945C !important;
+	background-color: #14945C !important;
+	border-radius: 40px !important;
+	padding: 0.25em 1.25em !important;
+	transition: all 0.5s ease-in;
+	transition-property: all;
+	transition-duration: 0.1s, 0.5s;
+	transition-timing-function: linear, ease-in;
+}
+
+.btn-add:hover{
+    color:#14945C !important;
+    background-color: white !important;
+    border-color: #14945C !important;
+}
+

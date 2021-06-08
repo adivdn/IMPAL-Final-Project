@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>DTRAIN.CJ | Dashboard</title>
+	<title>DTRAIN.CJ | Tiket</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
@@ -44,14 +44,6 @@
 		</div>
 	</nav>
 
-	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-	  <div class="carousel-inner">
-	    <div class="carousel-item active">
-	      <img class="d-block w-100" src="images/header.png" alt="First slide">
-	    </div>
-	  </div>
-	</div>
-
 	<section>
 		<div class="container mb-5">
 			<div class="row d-flex justify-content-center mb-5">
@@ -61,7 +53,7 @@
 					    Where to?
 					  </div>
 					  <div class="card-body">
-					    <form action="{{route('searchTiket')}}" method="POST">
+					  <form action="{{route('searchTiket')}}" method="POST">
 						{{csrf_field()}}
 						  <div class="form-row d-flex justify-content-center">
 						    <div class="form-group col-md-5">
@@ -138,41 +130,38 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row d-flex justify-content-center">
-				<div class="col-md-6 text-center p-5 text-underlineambers">
-					<h2 class="mb-3">Who are we</h2>
-					<p>The latest train ticket booking website that is lightweight, more user-friendly, and always up to date to make it easier for you to book your train ticket </p>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body" style="background:#3D4F91;">
+						<h5 class="card-title" style="text-align:center; color:white;">Select Departure Train</h5>
+					</div>
 				</div>
+				<form action="{{route('addCartTiket')}}" method="post">
+				@foreach ($listTiket as $lt)
+				<div class="card">
+					<div class="card-body">
+						
+						<h4 class="card-title" type="hidden" name = "id">{{$lt->id}}</h5>
+						<h4 class="card-title">{{$lt->nama_kereta}}</h5>
+						<h5 class="card-text">{{$lt->kelas}}</h5>
+						<p class="card-text" style = "margin-left:390px; margin-top:-30px;">{{$lt->jumlah_kursi}} Seat(s) left</p>
+
+						<h5 class="card-text" style="margin-top:50px;">{{$lt->jam_keberangkatan}} </h5>
+						<h5 class="card-text" style="margin-left:390px; margin-top: -30px;">{{$lt->jam_tiba}}</h5>
+						<h6 class="card-text" style="margin-top:5px;">{{$lt->stasiun_asal}} </h6>
+						<h6 class="card-text" style="margin-left:390px; margin-top:-25px;">{{$lt->stasiun_tujuan}}</h6>
+						<h5 class="card-text" style="margin-top:50px; margin-left: 250px;">Rp.{{number_format($lt->harga_tiket,2)}}</h5>
+						<button type="submit" class="btn btn-danger" style="margin-left: 390px; margin-top:-55px;">Choose</button>
+					</div>
+				</div>
+				@endforeach
+				</form>
 			</div>
-			<div class="row d-flex justify-content-center mb-5 p-5 ">
-				<div class="col-md-10 text-center mb-5 text-underlineambers">
-					<h3>Why Choose Dtrain.CJ</h3>
-				</div>
-				<!-- 1 -->
-				<div class="col-md-5 text-underlineambers">
-					<h4 class="mb-3">Official Partner of KAI</h4>
-					<p>We make sure the tickets you book are genuine and at competitive prices.</p>
-				</div>
-				<div class="col-md-5 text-right mb-5">
-					<img src="images/Logo_PT_Kereta_Api_Indonesia.png" class="img-fluid" alt="gambar-kai">
-				</div>
-				<!-- 2 -->
-				<div class="col-md-5 mb-5 mt-5">
-					<img src="images/card1.png" class="img-fluid" alt="gambar-card">
-				</div>
-				<div class="col-md-5 mb-5 text-right mt-5 text-underlineambers">
-					<h4 class="mb-3">Various Payment Options</h4>
-					<p>With plenty of options from ATM Transfer, Mobile Banking to Credit/Debit Card.</p>
-				</div>
-				<!-- 3 -->
-				<div class="col-md-5 mb-5 mt-5 text-underlineambers">
-					<h4 class="mb-3">Book Anywere, Anytime</h4>
-					<p>The availability of tickets will always be updated over time, making it easier to find the right ticket. </p>
-				</div>
-				<div class="col-md-5 text-right mb-5 mt-5">
-					<img src="images/laptop1.png" class="img-fluid" alt="gambar-laptop">
-				</div>
-			</div>
+		</div>
+		<!-- <div class="proceed">
+			<a href="" class="btn btn-secondary" style="margin-left:500px; margin-top:100px;">Proceed</a>
+		</div> -->
 		</div>
 	</section>
 

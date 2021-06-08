@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class User extends Migration
+class CreateBaliksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class User extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('baliks', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('countDiskon')->nullable();
-            $table->string('google_id')->nullable();
+            $table->foreignId('tikets_id')->constrained('tikets');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class User extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('baliks');
     }
 }

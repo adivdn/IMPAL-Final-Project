@@ -24,4 +24,21 @@ Route::get('auth/google/callback',[App\Http\Controllers\GoogleController::class,
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard',[App\Http\Controllers\dashboard::class,'index']);
+    Route::post('/searchTiket', [App\Http\Controllers\dashboardTiket::class, 'search'])->name('searchTiket');
+    Route::post('/addToCart',[App\Http\Controllers\dashboardTiket::class, 'addCartDeparture'])->name('addCartTiket');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'kereta'], function () {
+        Route::get('/', [App\Http\Controllers\adminKereta::class, 'index']);
+        Route::post('/addKereta', [App\Http\Controllers\adminKereta::class, 'store'])->name('addKereta');
+        Route::post('/edit', [App\Http\Controllers\adminKereta::class, 'update'])->name('keretaEdit');
+        Route::get('/delete/{id}', [App\Http\Controllers\adminKereta::class, 'destroy'])->name('keretaDelete');
+    });
+    Route::group(['prefix' => 'tiket'], function () {
+        Route::get('/', [App\Http\Controllers\adminTiket::class, 'index']);
+        Route::post('/addTiket', [App\Http\Controllers\adminTiket::class, 'store'])->name('addTiket');
+        Route::post('/edit', [App\Http\Controllers\adminTiket::class, 'update'])->name('tiketEdit');
+        Route::get('/delete/{id}', [App\Http\Controllers\adminTiket::class, 'destroy'])->name('tiketDelete');
+    });
 });
