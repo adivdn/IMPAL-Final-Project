@@ -11,6 +11,7 @@ class CreateTiketsTable extends Migration
      *
      * @return void
      */
+    public $timestamps = false;
     public function up()
     {
         Schema::create('tikets', function (Blueprint $table) {

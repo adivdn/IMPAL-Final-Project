@@ -15,8 +15,11 @@ class CreateBaliksTable extends Migration
     {
         Schema::create('baliks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tikets_id')->constrained('tikets');
-            $table->timestamps();
+            $table->string('stasiun_asal');
+            $table->string('stasiun_tujuan');
+            $table->date('jadwal');
+            $table->integer('adult');
+            $table->integer('child')->nullable();
         });
     }
 

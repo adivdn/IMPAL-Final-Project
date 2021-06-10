@@ -35,7 +35,7 @@
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
-			<a class="navbar-brand" href="#"><img src="images/logo.png" alt="logo" height="40"></a>
+			<a class="navbar-brand" href="{{url('/dashboard')}}"><img src="images/logo.png" alt="logo" height="40"></a>
 
 			<form class="form-inline my-2 my-lg-0 ml-auto">
 				<a href="{{route('logout')}}" class="btn bg-navy my-2 my-sm-0 widht-btn1">Logout</a>
@@ -137,26 +137,28 @@
 						<h5 class="card-title" style="text-align:center; color:white;">Select Departure Train</h5>
 					</div>
 				</div>
-				<form action="{{route('addCartTiket')}}" method="post">
 				@foreach ($listTiket as $lt)
+				<form action="{{route('addCartTiket')}}" method="post">
+				{{csrf_field()}}
+				
 				<div class="card">
 					<div class="card-body">
-						
-						<h4 class="card-title" type="hidden" name = "id">{{$lt->id}}</h5>
+						<input type="hidden" name="id" value="{{$lt->id}}">
 						<h4 class="card-title">{{$lt->nama_kereta}}</h5>
 						<h5 class="card-text">{{$lt->kelas}}</h5>
 						<p class="card-text" style = "margin-left:390px; margin-top:-30px;">{{$lt->jumlah_kursi}} Seat(s) left</p>
 
 						<h5 class="card-text" style="margin-top:50px;">{{$lt->jam_keberangkatan}} </h5>
-						<h5 class="card-text" style="margin-left:390px; margin-top: -30px;">{{$lt->jam_tiba}}</h5>
-						<h6 class="card-text" style="margin-top:5px;">{{$lt->stasiun_asal}} </h6>
-						<h6 class="card-text" style="margin-left:390px; margin-top:-25px;">{{$lt->stasiun_tujuan}}</h6>
+						<h5 class="card-text" style="margin-left:390px; margin-top: -25px;">{{$lt->jam_tiba}}</h5>
+						<h6 class="card-text" style="margin-top:5px;" name="stasiun_asal" value="{{$lt->stasiun_asal}}">{{$lt->stasiun_asal}} </h6>
+						<h6 class="card-text" style="margin-left:390px; margin-top:-20px;" name="stasiun_tujuan" value="{{$lt->stasiun_tujuan}}">{{$lt->stasiun_tujuan}}</h6>
 						<h5 class="card-text" style="margin-top:50px; margin-left: 250px;">Rp.{{number_format($lt->harga_tiket,2)}}</h5>
 						<button type="submit" class="btn btn-danger" style="margin-left: 390px; margin-top:-55px;">Choose</button>
 					</div>
 				</div>
-				@endforeach
+				
 				</form>
+				@endforeach
 			</div>
 		</div>
 		<!-- <div class="proceed">

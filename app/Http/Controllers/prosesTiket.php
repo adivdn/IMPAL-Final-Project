@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\tiket;
+use App\Models\balik;
+use App\Models\kereta;
+
 
 class prosesTiket extends Controller
 {
@@ -36,7 +39,31 @@ class prosesTiket extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = DB::table('baliks')
+                        -> select(DB::raw('baliks.adult,baliks.child'))
+                        ->where('baliks.jadwal','=',$request->jadwal)
+                        ->where('baliks.stasiun_asal','=',$request->stasiun_awal)
+                        ->where('baliks.stasiun_tujuan','=',$request->stasiun_tujuan)
+                        ->get();
+       pemesanan::insert([
+           'deparures_id'       => $request->id,
+           'nama_kereta'        => $request->nama_kereta,
+           'kelas'              => $request->kelas,
+           'stasiun_asal'       => $request->stasiun_asal,
+           'stasiun_tujuan'     => $request->stasiun_tujuan,
+           'jam_keberangkatan'  => $request->jam_keberangkatan,
+           'harga'              => $request->harga,
+           'adult'              => $data->adult,
+           'child'              => $data->child
+       ]);
+       $listData = DB::table('pemesanans')
+                    -> select(DB::raw('pemesanans.*'))
+                    ->where('pemesanans.jadwal','=',$request->jadwal)
+                    ->where('pemesanans.nama_kereta','=',$request->nama_kereta)
+                    ->where('pemesanans.stasiun_asal','=',$request->stasiun_awal)
+                    ->where('pemesanans.stasiun_tujuan','=',$request->stasiun_tujuan)
+                    ->get();
+       return view('pages.booking',compact('listData'));
     }
 
     /**

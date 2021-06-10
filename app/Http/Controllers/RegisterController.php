@@ -44,6 +44,7 @@ class RegisterController extends Controller
         user::create([
             'email'         =>  $request->email,
             'password'      =>  Hash::make($request->password),
+            'role'          =>  'pembeli'
             'countDiskon'   => 0,
             'google_id'     => NULL
         ]);

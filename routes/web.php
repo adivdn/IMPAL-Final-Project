@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard',[App\Http\Controllers\dashboard::class,'index']);
     Route::post('/searchTiket', [App\Http\Controllers\dashboardTiket::class, 'search'])->name('searchTiket');
     Route::post('/addToCart',[App\Http\Controllers\dashboardTiket::class, 'addCartDeparture'])->name('addCartTiket');
+    Route::post('/prosesTiket',[App\Http\Controllers\prosesTiket::class, 'store'])->name('processTicket');
+    
 });
 
 Route::group(['prefix' => 'admin'], function () {

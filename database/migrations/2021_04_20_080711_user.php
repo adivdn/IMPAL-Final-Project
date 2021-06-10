@@ -17,6 +17,7 @@ class User extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('role');
             $table->integer('countDiskon')->nullable();
             $table->string('google_id')->nullable();
             $table->timestamps();

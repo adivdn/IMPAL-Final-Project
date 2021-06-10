@@ -34,6 +34,7 @@ class GoogleController extends Controller
                 user::insert([
                     'email'         =>  $user->getEmail(),
                     'password'      => Hash::make('contoh123'),
+                    'role'          => 'pembeli',
                     'countDiskon'   =>  0,
                     'google_id'     => $user->getId()
                 ]);

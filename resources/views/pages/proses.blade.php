@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>DTRAIN.CJ | Dashboard</title>
+	<title>DTRAIN.CJ | Proses Tiket</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
@@ -35,7 +35,7 @@
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
-			<a class="navbar-brand" href="#"><img src="images/logo.png" alt="logo" height="40"></a>
+			<a class="navbar-brand" href="{{url('/dashboard')}}"><img src="images/logo.png" alt="logo" height="40"></a>
 
 			<form class="form-inline my-2 my-lg-0 ml-auto">
 				<a href="{{route('logout')}}" class="btn bg-navy my-2 my-sm-0 widht-btn1">Logout</a>
@@ -134,36 +134,36 @@
 			<div class="col-sm-6">
 				<div class="card">
 					<div class="card-body" style="background:#3D4F91;">
-						<h5 class="card-title" style="text-align:center; color:white;">1. Select Departure Train</h5>
+						<h5 class="card-title" style="text-align:center; color:white;">Departure Train</h5>
 					</div>
 				</div>
 
-				@foreach ($listCart as $lc)
+				@foreach ($prosesTiket as $pt)
+				<form action="{{route('processTicket')}}" method="post">
+				{{csrf_field()}}
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">{{$lc->nama_kereta}}</h5>
-						<h5 class="card-text">{{$lc->kelas}}</h5>
-						<p class="card-text" style = "margin-left:390px; margin-top:-30px;">{{$lc->jumlah_kursi}} Seat(s) left</p>
+						<input type="hidden" name="id" value="{{$pt->id}}">
+						<input type="hidden" name = "nama_kereta" value="{{$pt->nama_kereta}}">
+						<input type="hidden" name = "jam_keberangkatan" value="{{$pt->jam_keberangkatan}}">
+						<input type="hidden" name = "stasiun_asal" value="{{$pt->stasiun_asal}}>">
+						<input type="hidden" name = "stasiun_tujuan" value="{{$pt->stasiun_tujuan}}">
+						<input type="hidden" name = "harga" value="{{$pt->harga_tiket}}">
+						
+						<h4 class="card-title" name = "nama_kereta" value="{{$pt->nama_kereta}}">{{$pt->nama_kereta}}</h5>
+						<h5 class="card-text" name = "kelas" value="{{$pt->kelas}}">{{$pt->kelas}}</h5>
+						<h5 class="card-text" style="margin-top:50px;" name = "jam_keberangkatan" value="{{$pt->jam_keberangkatan}}">{{$pt->jam_keberangkatan}} </h5>
+						<h5 class="card-text" style="margin-left:390px; margin-top: -30px;" value="{{$pt->jam_tiba}}" >{{$pt->jam_tiba}}</h5>
+						<h6 class="card-text" style="margin-top:5px;" name = "stasiun_asal">{{$pt->stasiun_asal}} </h6>
+						<h6 class="card-text" style="margin-left:390px; margin-top:-25px;" name = "stasiun_tujuan" value="{{$pt->stasiun_tujuan}}">{{$pt->stasiun_tujuan}}</h6>
 
-						<h5 class="card-text" style="margin-top:50px;">{{$lc->jam_keberangkatan}} </h5>
-						<h5 class="card-text" style="margin-left:390px; margin-top: -30px;">{{$lc->jam_tiba}}</h5>
-						<h6 class="card-text" style="margin-top:5px;">{{$lc->stasiun_asal}} </h6>
-						<h6 class="card-text" style="margin-left:390px; margin-top:-25px;">{{$lc->stasiun_tujuan}}</h6>
-
-						<h5 class="card-text" style="margin-top:50px; margin-left: 250px;">Rp.{{number_format($lc->harga_tiket,2)}}</h5>
-                        <div class="card-footer text-muted">
-                         <a href="#">Change departure train</a>
-                        </div>    
+						<h5 class="card-text" style="margin-top:50px; margin-left: 350px;" name = "harga" value="{{$pt->harga_tiket}}">Rp.{{number_format($pt->harga_tiket,2)}}</h5>
+                        
 					</div>
 				</div>
+				<button type="submit" class="btn btn-danger" style="margin-left:500px; margin-top:50px;">Proceed</button>
+				</form>
 				@endforeach
-			</div>
-			<div class="col-sm-6">
-			<div class="card">
-				<div class="card-body" style="background:#3D4F91;">
-				<h5 class="card-title" style="text-align:center; color:white;">2. Select Return Train</h5>
-				</div>
-			</div>
 			</div>
 		</div>
 

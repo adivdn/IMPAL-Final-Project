@@ -49,10 +49,17 @@ class dashboardTiket extends Controller
         $jumlah_kursi2 = $request->jumlah_kursi2;
 
         $total = $jumlah_kursi + $jumlah_kursi2;
-
+        balik::insert([
+            'stasiun_asal'      => $stasiun_awal,
+            'stasiun_tujuan'    => $stasiun_tujuan,
+            'jadwal'            => $jadwal,
+            'adult'             => $jumlah_kursi,
+            'child'             => $jumlah_kursi2
+        ]);
         if($jadwal_balik == NULL){
           $listTiket = DB::table('tikets')
-                            ->select(DB::raw('tikets.*,keretas.*'))
+                            ->select(DB::raw('tikets.*,keretas.nama_kereta,keretas.jumlah_kursi,keretas.stasiun_asal,
+                            keretas.stasiun_tujuan,keretas.jam_keberangkatan,keretas.jam_tiba'))
                             ->join('keretas','tikets.keretas_id','=','keretas.id')
                             ->where('tikets.jadwal','=',$jadwal)
                             ->where('keretas.stasiun_asal','=',$stasiun_awal)
@@ -72,18 +79,20 @@ class dashboardTiket extends Controller
     public function addCartDeparture(Request $request)
     {
 
+        
         departure::insert([
             'tikets_id' => $request->id
         ]);
+        $prosesTiket = DB::table('departures')
+                        ->select(DB::raw('departures.id,tikets.jadwal,tikets.kelas,tikets.harga_tiket,keretas.nama_kereta,keretas.jumlah_kursi,keretas.stasiun_asal,
+                        keretas.stasiun_tujuan,keretas.jam_keberangkatan,keretas.jam_tiba'))
+                        ->join('tikets','departures.tikets_id','=','tikets.id')
+                        ->join('keretas','tikets.keretas_id','=','keretas.id')
+                        ->get();
 
-        return back();
+        return view('pages.proses',compact('prosesTiket'));
         
       
-    }
-    public function addCartReturn($id)
-    {
-        
-        
     }
 
     /**
