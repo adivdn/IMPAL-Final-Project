@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 //Import Library Socialite
 use Laravel\Socialite\Facades\Socialite;
 //Import Model User
@@ -28,6 +29,8 @@ class GoogleController extends Controller
             // Jika true maka akan otomatis login
             if($findUser){
                 Auth::login($findUser);
+                $email = $findUser->email;
+                session(['email' => $email]);
                 return redirect()->intended('/dashboard');
             }else{
             // jika tidak maka akan membuat user baru dan redirect ke page register

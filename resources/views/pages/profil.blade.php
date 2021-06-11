@@ -35,7 +35,7 @@
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
-			<a class="navbar-brand" href="#"><img src="images/logo.png" alt="logo" height="40"></a>
+			<a class="navbar-brand" href="{{url('/dashboard')}}"><img src="images/logo.png" alt="logo" height="40"></a>
 
 			<form class="form-inline my-2 my-lg-0 ml-auto">
 				<a href="{{route('logout')}}" class="btn bg-navy my-2 my-sm-0 widht-btn1">Logout</a>
@@ -53,87 +53,79 @@
 	</div>
 
 	<section>
+					@if(session('success-message'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <strong>Berhasil update Profile</strong>
+                        </div>
+                    @endif
 		<div class="container mb-5">
 			<div class="row d-flex justify-content-center mb-5">
 				<div class="col-md-10 p-5">
 					<div class="card cardborder-none shadow">
 					  <div class="card-header cardborder-none">
-					    Where to?
+					    Update Profile
 					  </div>
+					  
+					  @foreach($dataDiri as $dd)
 					  <div class="card-body">
-					    <form action="{{route('searchTiket')}}" method="POST">
-						{{csrf_field()}}
-						  <div class="form-row d-flex justify-content-center">
-						    <div class="form-group col-md-5">
-						      <label for="origin">Origin</label>
-						      <div class="input-group">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-subway"></i></div>
-						        </div>
-						        <input type="text" name="stasiun_awal" class="form-control" id="origin">
-						      </div>
-						    </div>
-						    <div class="form-group col-md-1 text-center align-self-end">
-						      <button class="btn bg-navy"><i class="fas fa-exchange-alt"></i></button>
-						    </div>
-						    <div class="form-group col-md-5">
-						      <label for="destination">Destination</label>
-						      <div class="input-group">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-subway"></i></div>
-						        </div>
-						        <input type="text" name = "stasiun_tujuan" class="form-control" id="destination">
-						      </div>
-						    </div>
-						  </div>
-						  <div class="form-row d-flex justify-content-center">
-						    <div class="form-group col-md-2">
-						      <label for="origin">Departure</label>
-						      <div class="input-group">
-						        <input type="date" name="jadwal" class="form-control" id="origin">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-						        </div>
-						      </div>
-						    </div>
-						    <div class="form-group col-md-2">
-						    	<div class="custom-control custom-checkbox">
-								  <input type="checkbox" class="custom-control-input" id="customCheck1">
-								  <label class="custom-control-label" for="customCheck1">Return</label>
+							<form action="{{route('updateProfile')}}" method="POST">
+								<input type="hidden" name="id" value="{{$dd->users_id}}">
+								{{csrf_field()}}
+								<div class="form-row d-flex justify-content-center">
+									<div class="form-group col-md-5">
+									<label for="origin">Nama Lengkap</label>
+									<div class="input-group">
+										
+										<input type="text" name="nama" class="form-control" id="origin">
+									</div>
+									</div>
+									
+									<div class="form-group col-md-5">
+									<label for="destination">Alamat</label>
+									<div class="input-group">
+									
+										<input type="text" name = "alamat" class="form-control" id="destination">
+									</div>
+									</div>
 								</div>
-						      <div class="input-group">
-						        <input type="date" name="jadwal_balik" class="form-control" id="return">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-						        </div>
-						      </div>
-						    </div>
-						    <div class="form-group col-md-2">
-						      <label for="adult">Adult</label>
-						      <div class="input-group">
-						        <input type="number" name="jumlah_kursi" class="form-control" id="adult">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
-						        </div>
-						      </div>
-						      <small class="form-text text-muted">Age 4+</small>
-						    </div>
-						    <div class="form-group col-md-2">
-						      <label for="infant">Infant</label>
-						      <div class="input-group">
-						        <input type="number" name="jumlah_kursi2" class="form-control" id="infant">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-user"></i></div>
-						        </div>
-						      </div>
-						      <small class="form-text text-muted">Below Age 4</small>
-						    </div>
-						    <div class="form-group col-md-3 text-center align-self-center">
-						      <button class="btn bg-amber btn-block" type="submit">Search Ticket</button>
-						    </div>
-						  </div>
-						</form>
-					  </div>
+								<div class="form-row d-flex justify-content-center">
+								<div class="form-group col-md-5">
+									<label for="origin">No KTP</label>
+									<div class="input-group">
+										
+										<input type="number" name="no_ktp" class="form-control" id="origin">
+									</div>
+									</div>
+									<div class="form-group col-md-5">
+									<label for="origin">No HP</label>
+									<div class="input-group">
+										
+										<input type="number" name="no_hp" class="form-control" id="origin">
+									</div>
+									</div>
+									<div class="form-group col-md-5">
+									<label for="origin">Jenis Kelamin</label>
+									<div class="input-group">
+										<select name="jk" id="">
+											<option selected>Gender</option>
+											<option value="laki">Laki - Laki</option>
+											<option value="pr">Perempuan</option>
+										</select>
+									</div>
+									</div>
+									<div class="form-group col-md-5">
+										<label for="origin">Tanggal Lahir</label>
+										<div class="input-group">
+											<input type="date" name="tgl_lahir" class="form-control" id="origin">
+										</div>
+										<div class="form-group row-md-3 text-center align-self-center">
+											<button class="btn bg-amber btn-block" type="submit">Update</button>
+										</div>
+									</div>
+							</form>	
+						</div>
+						@endforeach
 					</div>
 				</div>
 			</div>

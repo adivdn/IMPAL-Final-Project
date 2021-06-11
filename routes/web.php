@@ -19,11 +19,19 @@ Route::get('/',[App\Http\Controllers\landing::class,'index']);
 Route::post('login',[App\Http\Controllers\landing::class,'login'])->name('login');
 Route::get('/logout',[App\Http\Controllers\landing::class,'login'])->name('logout');
 
+
+
+
+
+
 Route::get('auth/google',[App\Http\Controllers\GoogleController::class,'redirectToGoogle'])->name('registergoogle');
 Route::get('auth/google/callback',[App\Http\Controllers\GoogleController::class,'handleGoogleCallback'])->name('googlecallback');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard',[App\Http\Controllers\dashboard::class,'index']);
+    Route::get('/profile',[App\Http\Controllers\dashboard::class,'profile']);
+    Route::post('/add',[App\Http\Controllers\dashboard::class,'addProfile'])->name('addProfile');
+    Route::post('/update',[App\Http\Controllers\dashboard::class,'updateProfile'])->name('updateProfile');
     Route::post('/searchTiket', [App\Http\Controllers\dashboardTiket::class, 'search'])->name('searchTiket');
     Route::post('/addToCart',[App\Http\Controllers\dashboardTiket::class, 'addCartDeparture'])->name('addCartTiket');
     Route::post('/prosesTiket',[App\Http\Controllers\prosesTiket::class, 'store'])->name('processTicket');

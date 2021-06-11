@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>DTRAIN.CJ | Dashboard</title>
+	<title>DTRAIN.CJ | Data Booking</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
@@ -35,7 +35,7 @@
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
-			<a class="navbar-brand" href="#"><img src="images/logo.png" alt="logo" height="40"></a>
+			<a class="navbar-brand" href="{{url('/dashboard')}}"><img src="images/logo.png" alt="logo" height="40"></a>
 
 			<form class="form-inline my-2 my-lg-0 ml-auto">
 				<a href="{{route('logout')}}" class="btn bg-navy my-2 my-sm-0 widht-btn1">Logout</a>
@@ -53,87 +53,44 @@
 	</div>
 
 	<section>
+                  
 		<div class="container mb-5">
 			<div class="row d-flex justify-content-center mb-5">
 				<div class="col-md-10 p-5">
 					<div class="card cardborder-none shadow">
-					  <div class="card-header cardborder-none">
-					    Where to?
-					  </div>
-					  <div class="card-body">
-					    <form action="{{route('searchTiket')}}" method="POST">
-						{{csrf_field()}}
-						  <div class="form-row d-flex justify-content-center">
-						    <div class="form-group col-md-5">
-						      <label for="origin">Origin</label>
-						      <div class="input-group">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-subway"></i></div>
-						        </div>
-						        <input type="text" name="stasiun_awal" class="form-control" id="origin">
-						      </div>
-						    </div>
-						    <div class="form-group col-md-1 text-center align-self-end">
-						      <button class="btn bg-navy"><i class="fas fa-exchange-alt"></i></button>
-						    </div>
-						    <div class="form-group col-md-5">
-						      <label for="destination">Destination</label>
-						      <div class="input-group">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-subway"></i></div>
-						        </div>
-						        <input type="text" name = "stasiun_tujuan" class="form-control" id="destination">
-						      </div>
-						    </div>
-						  </div>
-						  <div class="form-row d-flex justify-content-center">
-						    <div class="form-group col-md-2">
-						      <label for="origin">Departure</label>
-						      <div class="input-group">
-						        <input type="date" name="jadwal" class="form-control" id="origin">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-						        </div>
-						      </div>
-						    </div>
-						    <div class="form-group col-md-2">
-						    	<div class="custom-control custom-checkbox">
-								  <input type="checkbox" class="custom-control-input" id="customCheck1">
-								  <label class="custom-control-label" for="customCheck1">Return</label>
-								</div>
-						      <div class="input-group">
-						        <input type="date" name="jadwal_balik" class="form-control" id="return">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-						        </div>
-						      </div>
-						    </div>
-						    <div class="form-group col-md-2">
-						      <label for="adult">Adult</label>
-						      <div class="input-group">
-						        <input type="number" name="jumlah_kursi" class="form-control" id="adult">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-user-tie"></i></div>
-						        </div>
-						      </div>
-						      <small class="form-text text-muted">Age 4+</small>
-						    </div>
-						    <div class="form-group col-md-2">
-						      <label for="infant">Infant</label>
-						      <div class="input-group">
-						        <input type="number" name="jumlah_kursi2" class="form-control" id="infant">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><i class="fas fa-user"></i></div>
-						        </div>
-						      </div>
-						      <small class="form-text text-muted">Below Age 4</small>
-						    </div>
-						    <div class="form-group col-md-3 text-center align-self-center">
-						      <button class="btn bg-amber btn-block" type="submit">Search Ticket</button>
-						    </div>
-						  </div>
-						</form>
-					  </div>
+					    <div class="card-header cardborder-none">
+					    Data Booking
+					    </div>
+                      
+                      
+                        <div class="card-body">
+                            <table class="table mt-5 table-bordered">
+                                <thead class="bg-light text-dark">
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Kereta</th>
+                                        <th scope="col">Stasiun Asal</th>
+                                        <th scope="col">Stasiun Tujuan</th>
+                                        <th scope="col">Jadwal</th>
+                                        <th scope="col">Kelas</th>
+                                        <th scope="col">Gerbong</th>
+                                        <th scope="col">Harga Tiket</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                              
+                                        <tr class="data-row">
+                                            <th class="tbId" scope="row"></th>
+                                            <td class="tbIdKereta"></td>
+                                            <td class="tbJadwal"></td>
+                                            <td class="tbKelas"></td>
+                                            <td class="tbHarga"></td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+					    </div>
+
 					</div>
 				</div>
 			</div>

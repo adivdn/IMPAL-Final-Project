@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\user;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 class landing extends Controller
 {
     /**
@@ -25,12 +27,16 @@ class landing extends Controller
     public function login(Request $request)
     {
       if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+          $request->session()->put('email',$request->email);
           return redirect('/dashboard');
       }
       return redirect('/');
     }
     public function logout(Request $request){
         Auth::logout();
+        if(session()->has('email')){
+            session()->pull('email');
+        }
         return redirect('/');
     }
 
