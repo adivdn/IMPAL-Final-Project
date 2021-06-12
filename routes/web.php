@@ -19,6 +19,12 @@ Route::get('/',[App\Http\Controllers\landing::class,'index']);
 Route::post('login',[App\Http\Controllers\landing::class,'login'])->name('login');
 Route::get('/logout',[App\Http\Controllers\landing::class,'login'])->name('logout');
 
+Route::get('/mybooking',[App\Http\Controllers\dashboard::class,'booking']);
+
+Route::get('/payment',[App\Http\Controllers\payment::class,'index']);
+Route::get('/nextstep',[App\Http\Controllers\payment::class,'step']);
+Route::get('/success',[App\Http\Controllers\payment::class,'success']);
+
 
 
 
@@ -51,4 +57,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/edit', [App\Http\Controllers\adminTiket::class, 'update'])->name('tiketEdit');
         Route::get('/delete/{id}', [App\Http\Controllers\adminTiket::class, 'destroy'])->name('tiketDelete');
     });
+    Route::group(['prefix' => 'pemesanan'], function () {
+        Route::get('/', [App\Http\Controllers\adminPemesanan::class, 'index']);
+        Route::post('/edit', [App\Http\Controllers\adminPemesanan::class, 'update'])->name('PemesananEdit');
+        Route::get('/delete/{id}', [App\Http\Controllers\adminPemesanan::class, 'destroy'])->name('PemesananDelete');
+    });
+    Route::group(['prefix' => 'pembayaran'], function () {
+        Route::get('/', [App\Http\Controllers\adminPembayaran::class, 'index']);
+        Route::post('/edit', [App\Http\Controllers\adminPembayaran::class, 'update'])->name('PembayaranEdit');
+        Route::get('/delete/{id}', [App\Http\Controllers\adminPembayaran::class, 'destroy'])->name('PembayaranDelete');
+    });
+    
 });

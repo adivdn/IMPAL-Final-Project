@@ -78,8 +78,6 @@ class dashboardTiket extends Controller
      */
     public function addCartDeparture(Request $request)
     {
-
-        
         departure::insert([
             'tikets_id' => $request->id
         ]);

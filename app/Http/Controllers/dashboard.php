@@ -63,4 +63,8 @@ class dashboard extends Controller
         return redirect('/profile')->with('success-message','Berhasil update profile');
 
     }
+
+    public function booking(){
+        return view('pages.mybooking');
+    }
 }

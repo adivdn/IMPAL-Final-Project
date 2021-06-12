@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>DTRAIN.CJ | Data Booking</title>
+	<title>DTRAIN.CJ | Success</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
@@ -44,14 +44,6 @@
 		</div>
 	</nav>
 
-	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-	  <div class="carousel-inner">
-	    <div class="carousel-item active">
-	      <img class="d-block w-100" src="images/header.png" alt="First slide">
-	    </div>
-	  </div>
-	</div>
-
 	<section>
                   
 		<div class="container mb-5">
@@ -59,40 +51,24 @@
 				<div class="col-md-10 p-5">
 					<div class="card cardborder-none shadow">
 					    <div class="card-header cardborder-none">
-					    Data Booking
 					    </div>
-                      
                       
                         <div class="card-body">
-                            <table class="table mt-5 table-bordered">
-                                <thead class="bg-light text-dark">
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama Kereta</th>
-                                        <th scope="col">Stasiun Asal</th>
-                                        <th scope="col">Stasiun Tujuan</th>
-                                        <th scope="col">Jadwal</th>
-                                        <th scope="col">Kelas</th>
-                                        <th scope="col">Gerbong</th>
-                                        <th scope="col">Harga Tiket</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                              
-                                        <tr class="data-row">
-                                            <th class="tbId" scope="row"></th>
-                                            <td class="tbIdKereta"></td>
-                                            <td class="tbJadwal"></td>
-                                            <td class="tbKelas"></td>
-                                            <td class="tbHarga"></td>
-                                            <td class="tbHarga"></td>
-                                            <td class="tbHarga"></td>
-                                            <td class="tbHarga"></td>
-                                        </tr>
-                                    
-                                </tbody>
-                            </table>
-					    </div>
+                            <form action="#" method="POST">
+                                <div class="box">
+                                <img src="success.png" class="success" width="200px" height="200px" style="display:block; margin:auto;">
+                                    <h2 style="text-align:center;">All set and ready to go!</h2>
+                                    <p style="text-align:center;">After you complete your payment, an email containing your electronic </p>
+                                    <p style="text-align:center;">ticket will be automatically sent to you</p>
+                                            
+                                </div>      
+					    
+                                <div class="form-group row-md-1 text-center align-self-center" style="margin-top:10px;">
+                                        <a  href="{{url('/dashboard')}}" class="btn bg-amber btn-block" >Return to dashboard</a>
+                                </div>
+                            </form>
+                        </div>
+                        
 
 					</div>
 				</div>

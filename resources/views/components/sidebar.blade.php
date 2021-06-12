@@ -5,6 +5,9 @@
   <a href="" class="navbar-brand"><img src="{{asset('Logo.png')}}" class="img-fluid" width="100%"> </a>
   <a class="item" href="{{url('admin/kereta')}}"><i class="fa fa-calendar-o mr-2"></i> Kereta</a>
   <a class="item" href="{{url('admin/tiket')}}"><i class="fa fa-book mr-2"></i> Tiket</a>
+  <a class="item" href="{{url('admin/pemesanan')}}"><i class="fa fa-clock mr-2"></i> Pemesanan</a>
+  <a class="item" href="{{url('admin/pembayaran')}}"><i class="fa fa-pencil mr-2"></i> Pembayaran</a>
+
 </div>
 
 
