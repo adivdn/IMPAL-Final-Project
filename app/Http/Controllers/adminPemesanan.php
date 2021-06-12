@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\pemesanan;
+use Illuminate\Support\Facades\DB;
+
 class adminPemesanan extends Controller
 {
     /**
@@ -13,7 +15,14 @@ class adminPemesanan extends Controller
      */
     public function index()
     {
-        return view('pages.adminPemesanan');
+        $dataPemesan = DB::table('detail_pemesanans')
+                            ->select(DB::raw('detail_pemesanans.id,detail_pemesanans.total_cost,detail_pemesanans.nama,
+                            pemesanans.nama_kereta,pemesanans.stasiun_asal,pemesanans.stasiun_tujuan,
+                            pemesanans.jam_keberangkatan,pemesanans.adult,
+                            pemesanans.child'))
+                            ->join('pemesanans','detail_pemesanans.pemesanans_id','=','pemesanans.id')
+                            ->get();
+        return view('pages.adminPemesanan',compact('dataPemesan'));
     }
 
     /**

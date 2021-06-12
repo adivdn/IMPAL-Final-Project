@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\detail_pembayaran;
+use Illuminate\Support\Facades\DB;
 
 class adminPembayaran extends Controller
 {
@@ -13,7 +15,8 @@ class adminPembayaran extends Controller
      */
     public function index()
     {
-        return view('pages.pembayaran');
+        $dataBayar = detail_pembayaran::all();
+        return view('pages.pembayaran',compact('dataBayar'));
     }
 
     /**
@@ -54,9 +57,20 @@ class adminPembayaran extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$status)
     {
-        //
+        if($status == 'sudah'){
+            detail_pembayaran::where('id',$id)->update([
+                'konfirmasi'    => 'sudah'
+            ]);
+            return redirect('admin/pembayaran');
+        }else if($status == 'belum'){
+            detail_pembayaran::where('id',$id)->update([
+                'konfirmasi'    => 'belum'
+            ]);
+            return redirect('admin/pembayaran');
+
+        }
     }
 
     /**

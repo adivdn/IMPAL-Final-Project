@@ -30,7 +30,6 @@
 	            <a class="dropdown-item text-navy" href="{{url('/dashboard')}}"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
 	          	<a class="dropdown-item text-navy" href="{{url('/profile')}}"><i class="fas fa-fw fa-smile mr-3"></i>My Profile</a>
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-subway mr-3"></i>Book Train</a>
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-gift mr-3"></i>My Reward</a>
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
@@ -67,29 +66,27 @@
                             <table class="table mt-5 table-bordered">
                                 <thead class="bg-light text-dark">
                                     <tr>
-                                        <th scope="col">No</th>
                                         <th scope="col">Nama Kereta</th>
                                         <th scope="col">Stasiun Asal</th>
                                         <th scope="col">Stasiun Tujuan</th>
                                         <th scope="col">Jadwal</th>
                                         <th scope="col">Kelas</th>
                                         <th scope="col">Gerbong</th>
-                                        <th scope="col">Harga Tiket</th>
+                                        <th scope="col">Jam Keberangkatan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                              
+									@foreach($dataBook as $db)
                                         <tr class="data-row">
-                                            <th class="tbId" scope="row"></th>
-                                            <td class="tbIdKereta"></td>
-                                            <td class="tbJadwal"></td>
-                                            <td class="tbKelas"></td>
-                                            <td class="tbHarga"></td>
-                                            <td class="tbHarga"></td>
-                                            <td class="tbHarga"></td>
-                                            <td class="tbHarga"></td>
+                                            <td>{{$db->nama_kereta}}</td>
+                                            <td>{{$db->stasiun_asal}}</td>
+                                            <td>{{$db->stasiun_tujuan}}</td>
+                                            <td>{{$db->jadwal}}</td>
+                                            <td>{{$db->kelas}}</td>
+                                            <td>{{$db->gerbong}}</td>
+                                            <td>{{$db->jam_keberangkatan}}</td>
                                         </tr>
-                                    
+									@endforeach
                                 </tbody>
                             </table>
 					    </div>

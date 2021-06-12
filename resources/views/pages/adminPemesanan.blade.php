@@ -20,76 +20,29 @@
                 <thead class="bg-light text-dark">
                     <tr>
                         <th scope="col">No</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Total Cost</th>
                         <th scope="col">Nama Kereta</th>
                         <th scope="col">Jumlah Kursi</th>
                         <th scope="col">Stasiun Asal</th>
                         <th scope="col">Stasiun Tujuan</th>
                         <th scope="col">Jam Keberangkatan</th>
-                        <th scope="col">Jam Tiba</th>
-                        <th scope="col">Gerbong</th>
                     </tr>
                 </thead>
                 <tbody>
-                
+                    @foreach($dataPemesan as $dp)
                         <tr class="data-row">
                             <th class="tbId" scope="row"></th>
-                            <td class="tbNamaKereta"></td>
-                            <td class="tbjumlah_kursi"></td>
-                            <td class="tbStasiunAsal"></td>
-                            <td class="tbStasiunTujuan"></td>
-                            <td class="tbjamkeberangkatan"></td>
-                            <td class="tbjamtiba"></td>
-                            <td class="tbgerbong"></td>
+                            <td>{{$dp->nama}}</td>
+                            <td>{{$dp->total_cost}}</td>
+                            <td>{{$dp->nama_kereta}}</td>
+                            <td>{{$dp->adult + $dp->child}}</td>
+                            <td>{{$dp->stasisun_asal}}</td>
+                            <td>{{$dp->stasiun_tujuan}}</td>
+                            <td>{{$dp->jam_keberangkatan}}</td>
                         </tr>
-                    
+                    @endforeach
                 </tbody>
-                <div class="modal fade" id="modalEditMember" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Edit Kereta</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="edit-form" action="{{route('keretaEdit')}}" method="POST">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="editId" id="editId">
-                                    <div class="form-group">
-                                        <label for="nama">Nama Kereta</label>
-                                        <input type="text" class="form-control" id="editNama" name="nama_kereta" placeholder="" value="" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="JumlahKursi">Jumlah Kursi</label>
-                                        <input type="number" class="form-control" id="editJumlahKursi" name="jumlah_kursi" placeholder="Jumlah Kursi" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="StasiunAsal">Stasiun Asal</label>
-                                        <input type="text" class="form-control" id="editStasiunAsal" name="stasiun_asal" placeholder="Stasiun Asal" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="StasiunTujuan">Stasiun Tujuan</label>
-                                        <input type="text" class="form-control" id="editStasiunTujuan" name="stasiun_tujuan" placeholder="Stasiun Tujuan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jamkeberangkatan">Jam Keberangkatan</label>
-                                        <input type="time" class="form-control" id="editJamKeberangkatan" name="jam_keberangkatan" placeholder="Jam Keberangkatan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jamTiba">Jam Tiba</label>
-                                        <input type="time" class="form-control" id="editJamTiba" name="jam_tiba" placeholder="Jam Keberangkatan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Gerbong">Gerbong</label>
-                                        <input type="text" class="form-control" id="editGerbong" name="gerbong" placeholder="Gerbong" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-success my-3" style="float : right">Simpan</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </table>
 
 </div>

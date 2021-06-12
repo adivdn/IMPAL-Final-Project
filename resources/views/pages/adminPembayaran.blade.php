@@ -20,77 +20,32 @@
                 <thead class="bg-light text-dark">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama Kereta</th>
-                        <th scope="col">Jumlah Kursi</th>
-                        <th scope="col">Stasiun Asal</th>
-                        <th scope="col">Stasiun Tujuan</th>
-                        <th scope="col">Jam Keberangkatan</th>
-                        <th scope="col">Jam Tiba</th>
-                        <th scope="col">Gerbong</th>
+                        <th scope="col">Id Pembayaran</th>
+                        <th scope="col">Kode</th>
+                        <th scope="col">Metode</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                
+                    @foreach($dataBayar as $db)
                         <tr class="data-row">
-                            <th class="tbId" scope="row"></th>
-                            <td class="tbNamaKereta"></td>
-                            <td class="tbjumlah_kursi"></td>
-                            <td class="tbStasiunAsal"></td>
-                            <td class="tbStasiunTujuan"></td>
-                            <td class="tbjamkeberangkatan"></td>
-                            <td class="tbjamtiba"></td>
-                            <td class="tbgerbong"></td>
+                            <th class="tbId" scope="row">{{$db->id}}</th>
+                            <td class="">{{$db->pembayarans_id}}</td>
+                            <td class="">{{$db->kode}}</td>
+                            <td class="">{{$db->metode}}</td>
+                            @if($db->konfirmasi == '0')
+                            <td class="">
+                                <a href="{{route('adminBayar',['id' => $db->id, 'status' => 'sudah'])}}" class="btn btn-success">Sudah</a> <a href="{{route('adminBayar',['id' => $db->id, 'status' => 'belum'])}}" class="btn btn-danger">Belum</a>
+                            
+                            </td>
+                            @else
+                            <td class="">{{$db->konfirmasi}}</td>
+                            @endif
                         </tr>
+                    @endforeach
                    
                 </tbody>
-                <div class="modal fade" id="modalEditMember" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Edit Kereta</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="edit-form" action="{{route('keretaEdit')}}" method="POST">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="editId" id="editId">
-                                    <div class="form-group">
-                                        <label for="nama">Nama Kereta</label>
-                                        <input type="text" class="form-control" id="editNama" name="nama_kereta" placeholder="" value="" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="JumlahKursi">Jumlah Kursi</label>
-                                        <input type="number" class="form-control" id="editJumlahKursi" name="jumlah_kursi" placeholder="Jumlah Kursi" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="StasiunAsal">Stasiun Asal</label>
-                                        <input type="text" class="form-control" id="editStasiunAsal" name="stasiun_asal" placeholder="Stasiun Asal" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="StasiunTujuan">Stasiun Tujuan</label>
-                                        <input type="text" class="form-control" id="editStasiunTujuan" name="stasiun_tujuan" placeholder="Stasiun Tujuan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jamkeberangkatan">Jam Keberangkatan</label>
-                                        <input type="time" class="form-control" id="editJamKeberangkatan" name="jam_keberangkatan" placeholder="Jam Keberangkatan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jamTiba">Jam Tiba</label>
-                                        <input type="time" class="form-control" id="editJamTiba" name="jam_tiba" placeholder="Jam Keberangkatan" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Gerbong">Gerbong</label>
-                                        <input type="text" class="form-control" id="editGerbong" name="gerbong" placeholder="Gerbong" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-success my-3" style="float : right">Simpan</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </table>
 
 </div>

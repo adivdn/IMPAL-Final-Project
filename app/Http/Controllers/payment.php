@@ -39,7 +39,7 @@ class payment extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

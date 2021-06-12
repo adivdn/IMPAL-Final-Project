@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
     Route::group(['prefix' => 'pembayaran'], function () {
         Route::get('/', [App\Http\Controllers\adminPembayaran::class, 'index']);
-        Route::post('/edit', [App\Http\Controllers\adminPembayaran::class, 'update'])->name('PembayaranEdit');
+        Route::get('/edit/{id}/{status}', [App\Http\Controllers\adminPembayaran::class, 'edit'])->name('adminBayar');
         Route::get('/delete/{id}', [App\Http\Controllers\adminPembayaran::class, 'destroy'])->name('PembayaranDelete');
     });
     
