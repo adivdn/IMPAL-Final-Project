@@ -27,11 +27,9 @@
 			<div class="dropdown">
 	          <a class="btn bg-outline-white my-2 my-sm-0" id="dropmenu" data-toggle="dropdown" href="#"><i class="fas fa-bars"></i></a>
 	          <div class="dropdown-menu dropdown-menu-left" style="">
-	            <a class="dropdown-item text-navy" href="{{url('/dashboard')}}"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
+			 	 <a class="dropdown-item text-navy" href="{{url('/dashboard')}}"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
 	          	<a class="dropdown-item text-navy" href="{{url('/profile')}}"><i class="fas fa-fw fa-smile mr-3"></i>My Profile</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-subway mr-3"></i>Book Train</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-gift mr-3"></i>My Reward</a>
+	          	<a class="dropdown-item text-navy" href="{{url('/mybooking')}}"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
@@ -55,15 +53,22 @@
 					    </div>
                       
                         <div class="card-body">
-                            <form action="#" method="POST">
+							@foreach($dataBayar as $db)
+                            <form action="{{route('finalBayar')}}" method="POST">
+								{{csrf_field()}}
                                 <div class="box">
+									<input type="hidden" name="id" value="{{$db->id}}">
                                     <hr>
-                                    <p class="accountnumber"><b>Account Number:</b><br>
-                                        <!-- Javascript ambil number bca -->
+									@php
+										$token = rand();
+										$token2 = rand();
+										$code = $token.$token2;
+									@endphp
+									<input type="hidden" name="kode" value="{{$code}}">
+                                    <p class="accountnumber"><b>Account Number: {{$code}}</b><br>
                                     </p>
                                     <hr>
-                                    <p class="amount"><b>Amount to be paid:</b><br>
-                                        <!-- Javascript ambil harganya -->
+                                    <p class="amount"><b>Amount to be paid: Rp. {{number_format($db->total_harga,2)}}</b><br>
                                     </p>
                                     <hr>
                                     <p>
@@ -83,6 +88,7 @@
                                         <button class="btn bg-amber btn-block" type="submit">Proses</button>
                                 </div>
                             </form>
+							@endforeach
                         </div>
                         
 

@@ -15,6 +15,7 @@ class CreatePemesanansTable extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id')->constrained('users');
             $table->foreignId('departures_id')->constrained('departures');
             $table->string('nama_kereta');
             $table->string('kelas');

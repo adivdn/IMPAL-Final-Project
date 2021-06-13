@@ -17,7 +17,6 @@ class CreateDetailPembayaransTable extends Migration
             $table->id();
             $table->foreignId('pembayarans_id')->constrained('pembayarans');
             $table->string('kode');
-            $table->string('metode');
             $table->string('konfirmasi');
             $table->timestamps();
         });

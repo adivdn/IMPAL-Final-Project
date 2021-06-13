@@ -68,12 +68,14 @@ class dashboard extends Controller
 
         $dataBook = DB::table('pemesanans')
                         ->select(DB::raw('pemesanans.nama_kereta,pemesanans.stasiun_asal,
-                        pemesanans.stasiun_tujuan,pemesanans.kelas
+                        pemesanans.stasiun_tujuan,pemesanans.kelas,
                         pemesanans.jam_keberangkatan,tikets.jadwal,keretas.gerbong'))
+                        ->join('users','pemesanans.users_id','=','users.id')
                         ->join('departures','pemesanans.departures_id','=','departures.id')
                         ->join('tikets','departures.tikets_id','=','tikets.id')
                         ->join('keretas','tikets.keretas_id','=','keretas.id')
                         ->get();
         return view('pages.mybooking',compact('dataBook'));
+        
     }
 }

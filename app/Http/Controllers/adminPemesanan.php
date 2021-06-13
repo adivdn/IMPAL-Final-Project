@@ -16,7 +16,7 @@ class adminPemesanan extends Controller
     public function index()
     {
         $dataPemesan = DB::table('detail_pemesanans')
-                            ->select(DB::raw('detail_pemesanans.id,detail_pemesanans.total_cost,detail_pemesanans.nama,
+                            ->select(DB::raw('detail_pemesanans.id,detail_pemesanans.total_cost,detail_pemesanans.name,
                             pemesanans.nama_kereta,pemesanans.stasiun_asal,pemesanans.stasiun_tujuan,
                             pemesanans.jam_keberangkatan,pemesanans.adult,
                             pemesanans.child'))

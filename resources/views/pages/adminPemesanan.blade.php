@@ -9,6 +9,9 @@
     <div id="main">
         <div  class="header">
             <button class="openbtn" onclick="openNav()">☰</button>
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+				<a href="{{route('logout')}}" class="btn bg-navy my-2 my-sm-0 widht-btn1">Logout</a>
+			</form>
         </div>
         <div class="container">
             <h1 class="mt-5">Data Pemesanan</h1>
@@ -30,17 +33,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                         $count = 1;
+                    @endphp
                     @foreach($dataPemesan as $dp)
+                        
                         <tr class="data-row">
-                            <th class="tbId" scope="row"></th>
-                            <td>{{$dp->nama}}</td>
+                            <th class="tbId" scope="row">{{$count}}</th>
+                            <td>{{$dp->name}}</td>
                             <td>{{$dp->total_cost}}</td>
                             <td>{{$dp->nama_kereta}}</td>
                             <td>{{$dp->adult + $dp->child}}</td>
-                            <td>{{$dp->stasisun_asal}}</td>
+                            <td>{{$dp->stasiun_asal}}</td>
                             <td>{{$dp->stasiun_tujuan}}</td>
                             <td>{{$dp->jam_keberangkatan}}</td>
                         </tr>
+                        @php
+                         $count = $count +1;
+                    @endphp
                     @endforeach
                 </tbody>
             </table>

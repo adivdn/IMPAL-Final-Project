@@ -34,31 +34,10 @@ class pemesanan extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'jumlah_tiket'  =>  'required',
-            'tgl_pesan'     =>  'required',
-            'jk'            =>  'required',
-            'no_bangku'     =>  'required'
-        ]);
-
-        pemesanan::insert([
-            'id_tiket'      => $request->id_tiket,
-            'id_pembeli'    => $request->id_pembeli,
-            'harga_pesanan' => $request->harga_pesanan,
-            'jumlah_tiket'  => $request->jumlah_tiket,
-            'tgl_pesan'     => $request->tgl_pesan,
-            'jk'            => $request->jk,
-            'no_bangku'     => $request->no_bangku,
-            'countDiskon'   => $request->countDiskon + 1
-        ]);
+        
     }
 
-    public function setCountDiskon(){
-        $jumlah = pembeli::where('id',Auth::id())->select('countDiskon')->get();
-        if($jumlah > 10){
-            
-        }
-    }
+    
     /**
      * Display the specified resource.
      *

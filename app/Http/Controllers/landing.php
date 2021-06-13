@@ -27,15 +27,21 @@ class landing extends Controller
     public function login(Request $request)
     {
       if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+          $id = user::where('email',$request->email)->first();
+          if($request->email == 'admin@dtraincj.com'){
+            return redirect('/admin/kereta');
+          }
           $request->session()->put('email',$request->email);
+          $request->session()->put('users_id',$id);
           return redirect('/dashboard');
       }
       return redirect('/');
     }
     public function logout(Request $request){
         Auth::logout();
-        if(session()->has('email')){
+        if(session()->has('email') && session()->has('users_id')){
             session()->pull('email');
+            session()->pull('users_id');
         }
         return redirect('/');
     }

@@ -15,8 +15,11 @@ class adminPembayaran extends Controller
      */
     public function index()
     {
-        $dataBayar = detail_pembayaran::all();
-        return view('pages.pembayaran',compact('dataBayar'));
+        $dataBayar = DB::table('detail_pembayarans')
+                        ->select(DB::raw('detail_pembayarans.*,pembayarans.metode'))
+                        ->join('pembayarans','detail_pembayarans.pembayarans_id','=','pembayarans.id')
+                        ->get();
+        return view('pages.adminPembayaran',compact('dataBayar'));
     }
 
     /**

@@ -30,7 +30,8 @@ class GoogleController extends Controller
             if($findUser){
                 Auth::login($findUser);
                 $email = $findUser->email;
-                session(['email' => $email]);
+                $users_id = $findUser->id;
+                session(['email' => $email, 'users_id' => $users_id]);
                 return redirect()->intended('/dashboard');
             }else{
             // jika tidak maka akan membuat user baru dan redirect ke page register

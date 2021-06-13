@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\tiket;
 use App\Models\balik;
 use App\Models\kereta;
-
+use App\Models\pemesanan;
+use App\Models\detail_pemesanan;
 
 class prosesTiket extends Controller
 {
@@ -18,7 +19,7 @@ class prosesTiket extends Controller
      */
     public function index()
     {
-        
+       
     }
 
     /**
@@ -26,9 +27,25 @@ class prosesTiket extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function prosesData(Request $request)
     {
-        //
+        detail_pemesanan::insert([
+            'pemesanans_id'     => $request->id,
+            'total_cost'        => $request->total_cost,
+            'title'             => $request->title,
+            'name'              => $request->name,
+            'type'              => $request->type,
+            'id_number'         => $request->id_number,
+            'number'            => $request->number,
+            'seat'              => $request->seat,
+        ]);
+
+        $dataPesan = DB::table('detail_pemesanans')
+                        ->select(DB::raw('detail_pemesanans.id,detail_pemesanans.total_cost'))
+                        ->where('pemesanans_id','=',$request->id)
+                        ->get();
+
+        return view('pages.payment',compact('dataPesan'));
     }
 
     /**
@@ -39,29 +56,26 @@ class prosesTiket extends Controller
      */
     public function store(Request $request)
     {
-        $data = DB::table('baliks')
-                        -> select(DB::raw('baliks.adult,baliks.child'))
-                        ->where('baliks.jadwal','=',$request->jadwal)
-                        ->where('baliks.stasiun_asal','=',$request->stasiun_awal)
-                        ->where('baliks.stasiun_tujuan','=',$request->stasiun_tujuan)
-                        ->get();
+        $id = session('users_id');
+        $data = balik::where('users_id',$id)->first();
+        $adult = $data->adult;
+        $child = $data->child;
+        
        pemesanan::insert([
-           'deparures_id'       => $request->id,
+           'users_id'           => $id, 
+           'departures_id'       => $request->id,
            'nama_kereta'        => $request->nama_kereta,
            'kelas'              => $request->kelas,
            'stasiun_asal'       => $request->stasiun_asal,
            'stasiun_tujuan'     => $request->stasiun_tujuan,
            'jam_keberangkatan'  => $request->jam_keberangkatan,
            'harga'              => $request->harga,
-           'adult'              => $data->adult,
-           'child'              => $data->child
+           'adult'              => $adult,
+           'child'              => $child
        ]);
        $listData = DB::table('pemesanans')
                     -> select(DB::raw('pemesanans.*'))
-                    ->where('pemesanans.jadwal','=',$request->jadwal)
-                    ->where('pemesanans.nama_kereta','=',$request->nama_kereta)
-                    ->where('pemesanans.stasiun_asal','=',$request->stasiun_awal)
-                    ->where('pemesanans.stasiun_tujuan','=',$request->stasiun_tujuan)
+                    ->where('pemesanans.departures_id','=',$request->id)
                     ->get();
        return view('pages.booking',compact('listData'));
     }

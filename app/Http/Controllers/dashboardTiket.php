@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\tiket;
 use App\Models\departure;
 use App\Models\balik;
+use App\Models\user;
 class dashboardTiket extends Controller
 {
     /**
@@ -49,7 +50,10 @@ class dashboardTiket extends Controller
         $jumlah_kursi2 = $request->jumlah_kursi2;
 
         $total = $jumlah_kursi + $jumlah_kursi2;
+        $id = session('users_id');
+
         balik::insert([
+            'users_id'          => $id,
             'stasiun_asal'      => $stasiun_awal,
             'stasiun_tujuan'    => $stasiun_tujuan,
             'jadwal'            => $jadwal,

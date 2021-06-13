@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\pembayaran;
+use App\Models\detail_pembayaran;
+
+use Illuminate\Support\Facades\DB;
 
 class payment extends Controller
 {
@@ -13,11 +17,9 @@ class payment extends Controller
      */
     public function index()
     {
-        return view('pages.payment');
+        
     }
-    public function step(){
-        return view('pages.nextpayment');
-    }
+   
     public function success(){
         return view('pages.success');
     }
@@ -39,7 +41,27 @@ class payment extends Controller
      */
     public function store(Request $request)
     {
-        
+        pembayaran::insert([
+            'detail_pemesanans_id'  => $request->id,
+            'metode'                => $request->metode,
+            'total_harga'           => $request->total_harga
+        ]);
+        $dataBayar = DB::table('pembayarans')
+                         ->select(DB::raw('pembayarans.id,pembayarans.total_harga'))
+                         ->where('detail_pemesanans_id','=',$request->id)
+                         ->get();
+        return view('pages.nextpayment',compact('dataBayar'));
+    }
+
+    public function finalisasi(Request $request){
+        detail_pembayaran::insert([
+            'pembayarans_id'       => $request->id,
+            'kode'                 => $request->kode,
+            'konfirmasi'           => '0'
+        ]);
+
+        return redirect('/done');
+
     }
 
     /**

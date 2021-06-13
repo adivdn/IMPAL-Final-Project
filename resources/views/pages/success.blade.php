@@ -27,11 +27,9 @@
 			<div class="dropdown">
 	          <a class="btn bg-outline-white my-2 my-sm-0" id="dropmenu" data-toggle="dropdown" href="#"><i class="fas fa-bars"></i></a>
 	          <div class="dropdown-menu dropdown-menu-left" style="">
-	            <a class="dropdown-item text-navy" href="{{url('/dashboard')}}"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
+			  	<a class="dropdown-item text-navy" href="{{url('/dashboard')}}"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
 	          	<a class="dropdown-item text-navy" href="{{url('/profile')}}"><i class="fas fa-fw fa-smile mr-3"></i>My Profile</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-subway mr-3"></i>Book Train</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-gift mr-3"></i>My Reward</a>
+	          	<a class="dropdown-item text-navy" href="{{url('/mybooking')}}"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
@@ -54,7 +52,6 @@
 					    </div>
                       
                         <div class="card-body">
-                            <form action="#" method="POST">
                                 <div class="box">
                                 <img src="success.png" class="success" width="200px" height="200px" style="display:block; margin:auto;">
                                     <h2 style="text-align:center;">All set and ready to go!</h2>
@@ -66,7 +63,6 @@
                                 <div class="form-group row-md-1 text-center align-self-center" style="margin-top:10px;">
                                         <a  href="{{url('/dashboard')}}" class="btn bg-amber btn-block" >Return to dashboard</a>
                                 </div>
-                            </form>
                         </div>
                         
 

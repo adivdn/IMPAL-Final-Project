@@ -16,6 +16,7 @@ class CreatePembayaransTable extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('detail_pemesanans_id')->constrained('detail_pemesanans');
+            $table->string('metode');
             $table->integer('total_harga');
             $table->timestamps();
         });

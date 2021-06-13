@@ -9,6 +9,9 @@
     <div id="main">
         <div  class="header">
             <button class="openbtn" onclick="openNav()">☰</button>
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+				<a href="{{route('logout')}}" class="btn bg-navy my-2 my-sm-0 widht-btn1">Logout</a>
+			</form>
         </div>
         <div class="container">
             <h1 class="mt-5">CRUD Kereta</h1>

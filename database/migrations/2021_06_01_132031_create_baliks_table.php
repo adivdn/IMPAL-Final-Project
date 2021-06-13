@@ -15,6 +15,7 @@ class CreateBaliksTable extends Migration
     {
         Schema::create('baliks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('departures_id')->constrained('departures');
             $table->string('stasiun_asal');
             $table->string('stasiun_tujuan');
             $table->date('jadwal');

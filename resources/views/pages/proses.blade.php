@@ -27,11 +27,9 @@
 			<div class="dropdown">
 	          <a class="btn bg-outline-white my-2 my-sm-0" id="dropmenu" data-toggle="dropdown" href="#"><i class="fas fa-bars"></i></a>
 	          <div class="dropdown-menu dropdown-menu-left" style="">
-	            <a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-smile mr-3"></i>My Profile</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-subway mr-3"></i>Book Train</a>
-	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-gift mr-3"></i>My Reward</a>
+			  <a class="dropdown-item text-navy" href="{{url('/dashboard')}}"><i class="fas fa-fw fa-home mr-3"></i>Home</a>
+	          	<a class="dropdown-item text-navy" href="{{url('/profile')}}"><i class="fas fa-fw fa-smile mr-3"></i>My Profile</a>
+	          	<a class="dropdown-item text-navy" href="{{url('/mybooking')}}"><i class="fas fa-fw fa-clipboard-list mr-3"></i>My Booking</a>
 	          	<a class="dropdown-item text-navy" href="#"><i class="fas fa-fw fa-headset mr-3"></i>Contact Us</a>
 	          </div>
 	        </div>
@@ -149,6 +147,7 @@
 						<input type="hidden" name = "stasiun_asal" value="{{$pt->stasiun_asal}}>">
 						<input type="hidden" name = "stasiun_tujuan" value="{{$pt->stasiun_tujuan}}">
 						<input type="hidden" name = "harga" value="{{$pt->harga_tiket}}">
+						<input type="hidden" name = "kelas" value="{{$pt->kelas}}">
 						
 						<h4 class="card-title" name = "nama_kereta" value="{{$pt->nama_kereta}}">{{$pt->nama_kereta}}</h5>
 						<h5 class="card-text" name = "kelas" value="{{$pt->kelas}}">{{$pt->kelas}}</h5>
