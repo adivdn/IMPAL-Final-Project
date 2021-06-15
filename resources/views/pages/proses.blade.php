@@ -144,7 +144,7 @@
 						<input type="hidden" name="id" value="{{$pt->id}}">
 						<input type="hidden" name = "nama_kereta" value="{{$pt->nama_kereta}}">
 						<input type="hidden" name = "jam_keberangkatan" value="{{$pt->jam_keberangkatan}}">
-						<input type="hidden" name = "stasiun_asal" value="{{$pt->stasiun_asal}}>">
+						<input type="hidden" name = "stasiun_asal" value="{{$pt->stasiun_asal}}">
 						<input type="hidden" name = "stasiun_tujuan" value="{{$pt->stasiun_tujuan}}">
 						<input type="hidden" name = "harga" value="{{$pt->harga_tiket}}">
 						<input type="hidden" name = "kelas" value="{{$pt->kelas}}">

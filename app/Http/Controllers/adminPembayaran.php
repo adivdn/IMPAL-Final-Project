@@ -66,6 +66,7 @@ class adminPembayaran extends Controller
             detail_pembayaran::where('id',$id)->update([
                 'konfirmasi'    => 'sudah'
             ]);
+            
             return redirect('admin/pembayaran');
         }else if($status == 'belum'){
             detail_pembayaran::where('id',$id)->update([

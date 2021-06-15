@@ -91,7 +91,8 @@ class dashboardTiket extends Controller
                         keretas.stasiun_tujuan,keretas.jam_keberangkatan,keretas.jam_tiba'))
                         ->join('tikets','departures.tikets_id','=','tikets.id')
                         ->join('keretas','tikets.keretas_id','=','keretas.id')
-                        ->where('departures.tikets_id','=','tikets.id')
+                        ->where('departures.tikets_id','=',$request->id)
+                        ->limit(1)
                         ->get();
 
         return view('pages.proses',compact('prosesTiket'));
