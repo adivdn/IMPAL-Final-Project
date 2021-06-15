@@ -7,7 +7,9 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	
 	<!-- boostrap -->
 	<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
@@ -60,7 +62,7 @@
 								<input type="hidden" name="id" value="{{$dp->id}}">
 								<input type="hidden" name="total_harga" value="{{$dp->total_cost}}">
                                 <label for="Pilih">Pilih jenis pembayaran</label>
-                                    <select name="metode" id="" style ="margin-left:200px;">
+                                    <select name="metode" class="form-select" id="">
                                         <option selected>Method</option>
                                         <option value="indomaret">Indomaret</option>
                                         <option value="alfamart">Alfamart</option>

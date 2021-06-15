@@ -32,7 +32,7 @@ class landing extends Controller
             return redirect('/admin/kereta');
           }
           $request->session()->put('email',$request->email);
-          $request->session()->put('users_id',$id);
+          $request->session()->put('users_id',$id->id);
           return redirect('/dashboard');
       }
       return redirect('/');

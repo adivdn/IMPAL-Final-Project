@@ -46,7 +46,9 @@ class RegisterController extends Controller
             'password'      =>  Hash::make($request->password),
             'role'          =>  'pembeli',
             'countDiskon'   => 0,
-            'google_id'     => NULL
+            'google_id'     => NULL,
+            'created_at'    => NULL,
+            'updated_at'    => NULL
         ]);
 
         return redirect('/register')->with('success-message','Berhasil buat akun');

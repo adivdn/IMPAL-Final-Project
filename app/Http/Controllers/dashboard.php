@@ -74,6 +74,7 @@ class dashboard extends Controller
                         ->join('departures','pemesanans.departures_id','=','departures.id')
                         ->join('tikets','departures.tikets_id','=','tikets.id')
                         ->join('keretas','tikets.keretas_id','=','keretas.id')
+                        ->where('pemesanans.users_id','=','users.id')
                         ->get();
         return view('pages.mybooking',compact('dataBook'));
         

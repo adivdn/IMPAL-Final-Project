@@ -51,7 +51,7 @@ class dashboardTiket extends Controller
 
         $total = $jumlah_kursi + $jumlah_kursi2;
         $id = session('users_id');
-
+        
         balik::insert([
             'users_id'          => $id,
             'stasiun_asal'      => $stasiun_awal,
@@ -60,6 +60,7 @@ class dashboardTiket extends Controller
             'adult'             => $jumlah_kursi,
             'child'             => $jumlah_kursi2
         ]);
+        
         if($jadwal_balik == NULL){
           $listTiket = DB::table('tikets')
                             ->select(DB::raw('tikets.*,keretas.nama_kereta,keretas.jumlah_kursi,keretas.stasiun_asal,
@@ -90,6 +91,7 @@ class dashboardTiket extends Controller
                         keretas.stasiun_tujuan,keretas.jam_keberangkatan,keretas.jam_tiba'))
                         ->join('tikets','departures.tikets_id','=','tikets.id')
                         ->join('keretas','tikets.keretas_id','=','keretas.id')
+                        ->where('departures.tikets_id','=','tikets.id')
                         ->get();
 
         return view('pages.proses',compact('prosesTiket'));
