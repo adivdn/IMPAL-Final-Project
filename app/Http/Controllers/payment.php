@@ -49,6 +49,7 @@ class payment extends Controller
         $dataBayar = DB::table('pembayarans')
                          ->select(DB::raw('pembayarans.id,pembayarans.total_harga'))
                          ->where('detail_pemesanans_id','=',$request->id)
+                         ->limit(1)
                          ->get();
         return view('pages.nextpayment',compact('dataBayar'));
     }

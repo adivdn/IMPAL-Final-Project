@@ -43,6 +43,7 @@ class prosesTiket extends Controller
         $dataPesan = DB::table('detail_pemesanans')
                         ->select(DB::raw('detail_pemesanans.id,detail_pemesanans.total_cost'))
                         ->where('pemesanans_id','=',$request->id)
+                        ->limit(1)
                         ->get();
 
         return view('pages.payment',compact('dataPesan'));
@@ -76,6 +77,7 @@ class prosesTiket extends Controller
        $listData = DB::table('pemesanans')
                     -> select(DB::raw('pemesanans.*'))
                     ->where('pemesanans.departures_id','=',$request->id)
+                    ->limit(1)
                     ->get();
        return view('pages.booking',compact('listData'));
     }
